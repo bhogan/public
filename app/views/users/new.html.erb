@@ -1,16 +1,13 @@
 <h1>Sign up!</h1>
-
-<%= form_for @user do |f| %>
-
-  <%= f.label :username, "username" %>
-  <%= f.text_field :username %>
-
-  <%= f.label :password, "password" %>
-  <%= f.password_field :password %>
-
-  <%= f.label :confirmation, "confirmation" %>
-  <%= f.password_field :confirmation %> 
-
-  <%= f.submit 'Create new account' %>
-  
-<%end %>
+<% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+<% end %>
+</ul>
+<%= form_for @user do |form| %>
+<%= render 'user_form', f: form %>
+<%= form.submit "Create new account" %>
+<% end %>
+ 

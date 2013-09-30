@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'bcrypt-ruby'
+
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
