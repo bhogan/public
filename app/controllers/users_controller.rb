@@ -10,10 +10,6 @@ class UsersController < ApplicationController
  
   
   def create
-    permitted_params = params.require(:user).permit(:username, 
-                                                    :password, 
-                                                    :password_confirmation,
-                                                    :email)
     @user = User.new(permitted_params)
     if @user.save then
       redirect_to @user
@@ -31,10 +27,6 @@ class UsersController < ApplicationController
     end
     
     def update
-       permitted_params = params.require(:user).permit(:username, 
-                                                      :password, 
-                                                      :password_confirmation,
-                                                      :email)
       @user = User.find(params[:id])
       
       if @user.update(permitted_params) then
@@ -44,5 +36,14 @@ class UsersController < ApplicationController
       end
     end
     
+      def permitted_params
+        params.require(:user).permit(:username, :password, :password_confirmation, :email)
+      end
+      
+      def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+        redirect_to users_path
+      end
   
 end
