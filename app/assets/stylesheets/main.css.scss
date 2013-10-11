@@ -1,0 +1,7 @@
+@import "bootstrap";
+@import "variables";
+
+  .field_with_errors {
+    @extend.has-error;
+    @extend.form-control;
+}

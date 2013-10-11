@@ -1,13 +1,12 @@
-<%= form_for @user do |f| %>
-  <%= if @user.errors.any? %>
-    <div class = "alert alert-danger">
-      <p> There are <%= @user.errors.count %> errors. </p>
-    </div>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
     <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li class = "text-danger"><%= massage %>
-      </ul>
-<%= end %>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= f.label :username %>
 <%= f.text_field :username, class: 'form-control' %>

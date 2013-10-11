@@ -7,17 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <% flash.each do |level, message| %>
-  <div class="alert alert-<%= level %>"<%= message %></div>
-  <% end %>
-  
-  <div class="container">
-    <%= yield %>
+  <div id="container">
+<%
+=begin
+%>
+      <div id="header"><a href="<%= users_path %>"><span><h1>Game Contest Server</h1></span></a></div>
+<%
+=end
+%>
+    <%= render "navbar" %>
+    <% flash.each do |level, message| %>
+      <div class="alert alert-<%= level %>"><%= message %></div>
+    <% end %>
+    <div id="content">
+      <%= yield %>
+    </div>
+<%
+=begin
+%>
+    <div id="footer">
+      Footer
+    </div>
+<%
+=end
+%>
   </div>
-    
-  
-<%= yield %>
-
 </body>
 </html>
