@@ -1,8 +1,16 @@
-<h1>List of users</h1>
-
-<p><%= User.count %> users</p>
-<ul>
+<% content_for :title, "Users" %>
+<% if !@users.empty? %>
+   <h1>List of users (<%= pluralize(User.count, "users") %>):</h1>
+  <ul class="list-group">
   <% @users.each do |user| %>
-    <li><%= render user %></li>
+    <li class="list-group-item">
+      <%= link_to user.username, user %>
+      <% if (logged_in? && current_user.admin? && !user.admin?) %> |
+      <%= link_to "delete", user, class: "text-danger", method: :delete%>
+     <% end %>
+    </li>
   <% end %>
-</ul>
+  </ul>
+<% else %>
+   <h1>No Users</h1>
+<% end %>
