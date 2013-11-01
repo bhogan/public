@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030135416) do
+ActiveRecord::Schema.define(version: 20131031201629) do
 
   create_table "contests", force: true do |t|
     t.datetime "deadline"
     t.datetime "start"
     t.text     "description"
     t.string   "name"
-    t.string   "type"
+    t.string   "contest_type"
     t.integer  "user_id"
     t.integer  "referee_id"
     t.datetime "created_at"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20131030135416) do
     t.string   "admin"
     t.string   "boolean"
     t.boolean  "contest_creator"
-    t.boolean  "is_banned"
+    t.boolean  "banned"
     t.string   "chat_url"
   end
 
