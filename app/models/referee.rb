@@ -2,9 +2,13 @@ class Referee < ActiveRecord::Base
   belongs_to :user
   has_many :contests
   has_many :matches, as: :manager
+
+  validates_numericality_of :players_per_game, :greater_than => 0, :less_than => 10 
+  validates :rules_url, presence: true, format: /https?:\/\/[\S]+/
+  
   
   def upload=(uploaded_file)
-    if uploaded_file.nil
+    if uploaded_file.nil 
       #problem no file
     else
       time_no_spaces = Time.now.to_s.gsub(/ / , '_')
@@ -13,5 +17,7 @@ class Referee < ActiveRecord::Base
     end
     self.file_location = "the location we end up with"
   end
+ 
+  
   
 end
