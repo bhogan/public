@@ -1,0 +1,7 @@
+<% provide(:title, 'All Contests') %>
+<h1>List of contests</h1>
+<p><%= @contests.length%> contests</p>
+<ul>
+  <%= render @contests %>  
+</ul>
+<p><%=link_to "New Contest", new_contest_path %></p>

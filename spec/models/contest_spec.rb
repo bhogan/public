@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Contest do
-<<<<<<< HEAD
-  pending "add some examples to (or delete) #{__FILE__}"
-=======
   let (:contest) { FactoryGirl.create(:contest) }
   subject { contest }
 
@@ -33,7 +30,7 @@ describe Contest do
   end
 
   describe "deadline now" do
-    before { contest.deadline = Time.current }
+    before { contest.deadline = Time.current + 5.seconds }
     it { should be_valid }
   end
 
@@ -70,7 +67,7 @@ describe Contest do
   end
 
   describe "start now" do
-    before { contest.deadline = contest.start = Time.current }
+    before { contest.deadline = contest.start = Time.current + 5.seconds }
     it { should be_valid }
   end
 
@@ -112,5 +109,4 @@ describe Contest do
     specify { expect_required_attribute(:referee) }
     specify { expect_required_attribute(:user) }
   end
->>>>>>> a4d5c3fc93b8426306eaf284083ad702a88ff2a6
 end

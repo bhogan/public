@@ -5,12 +5,16 @@ class UsersController < ApplicationController
   before_action :ensure_admin_user, only:[:destroy]
   before_action :ensure_not_logged_in, only: [:new, :create]
   
+  respond_to :html, :json, :xml
+  
   def index
     @users=User.all
+    respond_with(@user)
   end
   
   def new
     @user = User.new
+    respond_with(@user)
   end
  
   
@@ -21,28 +25,26 @@ class UsersController < ApplicationController
       cookies[:user] = @user.username
       cookies.signed[:user_id] = @user.id
       flash[:success]="Welcome to the site: #{@user.username}"
-      redirect_to @user
-    else
-      render 'new'
     end
+    respond_with(@user)
   end
  
     def show
       @user = User.find(params[:id])
+      respond_with(@user)
     end
     
     def edit
       @user = User.find(params[:id])
+      respond_with(@user)
     end
     
     def update
       @user = User.find(params[:id])
       if @user.update(permitted_params) then
         flash[:success]="Successful user update: #{@user.username}"
-        redirect_to @user
-      else
-        render 'edit'
       end
+      respond_with(@user)
     end
       
     def destroy
@@ -52,6 +54,7 @@ class UsersController < ApplicationController
         cookies.delete :user_id
         @user.destroy
         flash[:success] = "User destroyed"
+        respond_with(@user)
       else
         flash[:danger] = "Unable to delete self"
         redirect_to root_path
@@ -65,12 +68,12 @@ class UsersController < ApplicationController
       end
       
       def ensure_user_logged_in
-        redirect_to login_path, flash: { :warning => "Couldn't log in" } unless logged_in? 
+        redirect_to login_path, flash: { :warning => "Must be logged in." } unless logged_in? 
       end
       
       def ensure_correct_user
         @user = User.find(params[:id])
-        redirect_to root_path, flash: { :danger => "Must be logged in" } unless current_user?(@user)
+        redirect_to root_path, flash: { :danger => "Must be logged in to correct user" } unless current_user?(@user)
       end
       
       def ensure_admin_user

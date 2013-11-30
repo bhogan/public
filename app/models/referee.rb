@@ -5,6 +5,8 @@ class Referee < ActiveRecord::Base
 
   validates_numericality_of :players_per_game, :greater_than => 0, :less_than => 10 
   validates :rules_url, presence: true, format: /https?:\/\/[\S]+/
+  validates :name, presence: true, uniqueness: true
+  validates :file_location, presence: true
   
   
   def upload=(uploaded_file)
