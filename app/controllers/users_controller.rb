@@ -54,7 +54,6 @@ class UsersController < ApplicationController
         cookies.delete :user_id
         @user.destroy
         flash[:success] = "User destroyed"
-        respond_with(@user)
       else
         flash[:danger] = "Unable to delete self"
         redirect_to root_path

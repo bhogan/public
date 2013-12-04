@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :contests
   has_many :referees
+  has_many :players
   
   validates :username, presence: true, length: {maximum: 25}, uniqueness: true
   validates :email, presence: true, format: /\A[^\s]+@([a-z0-9]+\.)+\w+\z/i

@@ -7,4 +7,7 @@ class Player < ActiveRecord::Base
   validates :name, presence: true, uniqueness: {scope: :contest}
   validates :description, presence: true 
   validates :file_location, presence: true
+  
+
+
 end
