@@ -1,28 +1,8 @@
 <h1> Create new referee </h1>
 
 <%= form_for @referee do |f| %>
+<%= render 'referee_form', :f => f %>
 
-  <div class= "form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: "form-control" %>
-  </div>
-
-  <div class= "form-group">
-  <%= f.label :rules_url %>
-  <%= f.text_field :rules_url, class: "form-control" %>
-  </div>
-
-  <div class= "form-group">
-  <%= f.label :players_per_game %>
-  <%= f.text_field :players_per_game %>
-    <%= f.select :players_per_game, 1..10, {}, class: "form-control"%>
-  </div>
-
-  <div class= "form-group">
-  <%= f.label :upload %>
-  <%= f.text_field :upload %>
-  </div>
-
-  <%= f.submit "Upload a new referee" %>
+  <%= f.submit "Create Referee" %>
 <% end %>
 

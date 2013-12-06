@@ -1,7 +1,8 @@
 class PlayersController < ApplicationController
  
-  before_action :ensure_correct_user, only: [:edit, :update]
   before_action :ensure_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update]
+
   
   def new
     contest= Contest.find(params[:contest_id])
@@ -45,9 +46,9 @@ class PlayersController < ApplicationController
     def destroy
       @player = Player.find(params[:id])
       if current_user? (@player.user)
-        redirect_to contest_players_path(@player.contest)
         @player.destroy
         flash[:success] = "Player destroyed"
+        redirect_to contest_players_path(@player.contest)
       else
         flash[:danger] = "Unable to delete player"
         redirect_to root_path

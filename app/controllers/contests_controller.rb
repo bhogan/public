@@ -14,6 +14,7 @@ class ContestsController < ApplicationController
       flash[:success] = "Contest #{@contest.name} created!"
       redirect_to @contest     
     else
+      flash[:danger] = "Contest #{@contest.name} not created!"
       render 'new'
     end
   end

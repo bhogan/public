@@ -8,6 +8,6 @@ class Player < ActiveRecord::Base
   validates :description, presence: true 
   validates :file_location, presence: true
   
-
+  include Uploadable
 
 end

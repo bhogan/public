@@ -50,10 +50,9 @@ class UsersController < ApplicationController
     def destroy
       @user = User.find(params[:id])
       if !current_user? @user
-        redirect_to users_path
-        cookies.delete :user_id
         @user.destroy
         flash[:success] = "User destroyed"
+        redirect_to users_path
       else
         flash[:danger] = "Unable to delete self"
         redirect_to root_path
@@ -76,7 +75,7 @@ class UsersController < ApplicationController
       end
       
       def ensure_admin_user
-        redirect_to users_path unless current_user.admin?
+        redirect_to root_path, flash: { :danger => "Must be logged in as admin" } unless current_user.admin?
       end
       
     def ensure_not_logged_in

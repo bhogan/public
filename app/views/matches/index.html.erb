@@ -1,0 +1,8 @@
+<h2>Matches</h2>
+<ol>
+<% @matches.each do |f| %>
+  <% if f.manager_id==@contest.id %>
+    <li><%= link_to f.id, match_path(f)%></li>
+  <% end %>
+<% end %>
+</ol>
