@@ -1,6 +1,10 @@
 <h1>Referee Information</h1>
+
+<p>Name <%= @referee.name %> | <%= link_to "edit", edit_referee_path(@referee) %></p>
 <ul>
-  <li>Name:<%= @referee.name %> </li>
-  <li><%= link_to 'Rules', @referee.rules_url %></li>
-  <li>Players per Game:<%= @referee.players_per_game%></li>
+  <li>Rules url <%= link_to 'Rules', @referee.rules_url %></li>
+  <li>Creator <%= @referee.user.username %></li>
+  <li>Players per Game <%= @referee.players_per_game %></li>
+  <li>Contests <ul><% @referee.contests.each do |f| %>
+    <li><%= link_to f.name, contest_path(f) %></li><%end %></ul></li>
 </ul>
